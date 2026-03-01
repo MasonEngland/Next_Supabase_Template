@@ -143,3 +143,10 @@ After this, your app is ready locally.
 - All protected routes live under `/protected` and require authentication.  
 - Shared components go in `app/_components`; page-specific components live in the page folder.  
 - Global/shared functions and `'use server'` actions live in `lib`.  
+
+## deployment
+
+this has been deployed to vercel at the location [https://next-supabase-template-phi.vercel.app/](https://next-supabase-template-phi.vercel.app/)
+- uses github runners to automatically run migrations upon each push. 
+- uses built in vercel CI/CD for updates.
+- used cloud database for deployment, local database for development (setup with the setup script)
