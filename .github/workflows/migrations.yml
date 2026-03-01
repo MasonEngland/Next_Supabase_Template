@@ -22,9 +22,7 @@ jobs:
           node-version: 22
 
       - name: Install Supabase CLI
-        run: |
-          curl -L https://github.com/supabase/cli/releases/latest/download/supabase_$(uname -s)_$(uname -m).tar.gz \
-          | tar xz -C /usr/local/bin
+        run: npm install supabase
 
       - name: Run Supabase Migrations
         env:
@@ -32,4 +30,4 @@ jobs:
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
         run: |
           echo "Running Supabase migrations..."
-          supabase db push --force
+          npx supabase db push --force
