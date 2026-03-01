@@ -30,4 +30,4 @@ jobs:
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
         run: |
           echo "Running Supabase migrations..."
-          npx supabase db push
+          npx supabase db push --db-url ${{ secrets.PROD_DB_URL }}
