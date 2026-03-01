@@ -1,0 +1,33 @@
+name: Supabase Migrations
+
+# Trigger on pushes to main or manually
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    environment: production  # links to the environment secrets
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Supabase CLI
+        run: npm install -g supabase
+
+      - name: Run Supabase Migrations
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+        run: |
+          echo "Running Supabase migrations..."
+          supabase db push --force
